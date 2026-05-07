@@ -44,6 +44,9 @@ connectMongo().then(() => {
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
   });
+}).catch(err =>{
+    console.error('Startup failed:', err);
+    process.exit(1);
 });
 
 async function gracefulShutdown() {
