@@ -6,9 +6,10 @@ import cors from 'cors'
 const app = express()
 const port = 8080
 
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
-app.get('/professional', async (req, res) => {
+app.get('/professional', async (req, res,next) => {
   try{
       let db = await getDB()
       let users = db.collection("users")
@@ -16,12 +17,17 @@ app.get('/professional', async (req, res) => {
     const query = { professionalName: 'Nathan Birch' };
     const user = await users.findOne(query);
       res.json(user)
-  }catch{
-    
-  }finally{
-
+  }catch(err){
+      next(err)
   }
 
+})
+
+
+
+app.use((err,req,res,next) => {
+  console.log(err)
+  res.status(500).json({500:"Request failed"})
 })
 
 connectMongo().then(()=>{
