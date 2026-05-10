@@ -1,10 +1,10 @@
 import express from 'express'
-import {GetContactByFirstName,GetAllContacts} from './contacts.js'
+import {GetContactById,GetAllContacts} from './contacts.js'
 
 const routes = express.Router();
 
 routes.get("/all_contacts",GetAllContacts)
-routes.get("/contact",GetContactByFirstName)
+routes.get("/contact/:id",GetContactById)
 
 
 export {routes}
