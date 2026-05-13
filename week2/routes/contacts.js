@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"
 import {
   GetContactById,
   GetAllContacts,
@@ -8,7 +8,6 @@ import {
 } from "../controllers/contacts.js";
 
 const routes = express.Router();
-
 routes.get("/", GetAllContacts);
 routes.get("/:id", GetContactById);
 routes.post("/", CreateContact);

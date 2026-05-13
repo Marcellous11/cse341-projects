@@ -5,8 +5,8 @@ const doc = {
         title : "Contacts",
         description: "Contacts for CSE341 API"
     },
-    host: "localhost:8080",
-    schemas: ["https,","http"]
+    host: "cse341-projects-cs73.onrender.com/",
+    schemas: ["http,","https"]
 }
 
 const outFile= "./swagger.json"

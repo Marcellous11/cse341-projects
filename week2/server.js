@@ -2,17 +2,13 @@ import express from "express";
 import { connectMongo, closeDB } from "./data/db.js";
 import cors from "cors";
 import routes from './routes/index.js'
-import bodyParser from 'parse-body'
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swagger.json' with {type:"json"};
 
 const app = express();
 
 
 app.use(express.json());
 app.use(cors());
-// app.use(bodyParser.json())
-app.use(routes)
+
 // app.use("/api-docs",swaggerUi.serve,swaggerUi,setup(swaggerDocument))
 const port = process.env.PORT || 8080
 
@@ -25,6 +21,9 @@ app.use((req,res,next)=>{
   res.setHeader("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS")
   next()
 })
+
+//! All Routes start here
+app.use(routes)
 
 app.use((req,res,next)=>{
   const error = new Error("Page not found")
