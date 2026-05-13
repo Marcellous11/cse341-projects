@@ -1,0 +1,8 @@
+GET http://localhost:8080/contacts
+
+POST localhost:8080/contacts -H "Content-Type: application/json"  -d '{"firstName":"Marcellous", "lastName":"Curtis", "email":"1mcj001@gmail.com", "favoriteColor":"Green", "birthday":"September 24,1996"}'
+
+PUT http://localhost:8080/contacts/6a0095e35af7175d832c608c -H "Content-Type: application/json"  -d '{"firstName":"Stephan", "lastName":"Tall", "email":"reddragon@gmail.com", "favoriteColor":"Red", "birthday":"June 22, 1990"}'
+
+DELETE http://localhost:8080/contacts/6a0095e35af7175d832c608c
+
