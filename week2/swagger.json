@@ -5,12 +5,23 @@
     "description": "Contacts for CSE341 API",
     "version": "1.0.0"
   },
-  "host": "cse341-projects-cs73.onrender.com/",
+  "host": "cse341-projects-cs73.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http,",
+    "https"
   ],
   "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/contacts/": {
       "get": {
         "description": "",
@@ -138,9 +149,5 @@
         }
       }
     }
-  },
-  "schemas": [
-    "http,",
-    "https"
-  ]
+  }
 }
