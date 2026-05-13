@@ -2,7 +2,7 @@ import { getDB } from "../data/db.js";
 import { ObjectId } from "mongodb";
 
 async function GetContactById(req, res, next) {
-  // swagger.tags=['Contacts]
+  // swagger.tags=['Contacts']
   try {
     let db = await getDB();
     let contacts = db.collection("Contacts");
@@ -18,7 +18,7 @@ async function GetContactById(req, res, next) {
 }
 
 async function GetAllContacts(req, res, next) {
-    // swagger.tags=['Contacts]
+    // swagger.tags=['Contacts']
   try {
     let db = await getDB();
     let contacts = db.collection("Contacts");
@@ -31,7 +31,7 @@ async function GetAllContacts(req, res, next) {
 }
 
 async function CreateContact(req,res,next){
-    // swagger.tags=['Contacts]
+    // swagger.tags=['Contacts']
     try {
       const user = {
         firstName: req.body.firstName,
@@ -57,7 +57,7 @@ async function CreateContact(req,res,next){
   }
 }
 async function UpdateContact(req,res,next){
-    // swagger.tags=['Contacts]
+    // swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id)
     try {
       const user = {
@@ -84,7 +84,7 @@ async function UpdateContact(req,res,next){
   }
 }
 async function DeleteContact(req,res,next){
-    // swagger.tags=['Contacts]
+    // swagger.tags=['Contacts']
   const userId = new ObjectId(req.params.id)
     try {
 
