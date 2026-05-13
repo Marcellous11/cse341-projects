@@ -5,11 +5,11 @@ const doc = {
         title : "Contacts",
         description: "Contacts for CSE341 API"
     },
-    host: "cse341-projects-cs73.onrender.com/",
-    schemas: ["http,","https"]
+    host: "cse341-projects-cs73.onrender.com",
+    schemes: ["http,","https"]
 }
 
 const outFile= "./swagger.json"
 const endpointsFiles = ['./routes/index.js']
 
-swaggerAutogen(outFile,endpointsFiles,doc)
+swaggerAutogen()(outFile,endpointsFiles,doc)
