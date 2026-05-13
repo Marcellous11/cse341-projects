@@ -12,16 +12,6 @@ app.use(cors());
 // app.use("/api-docs",swaggerUi.serve,swaggerUi,setup(swaggerDocument))
 const port = process.env.PORT || 8080
 
-app.use((req,res,next)=>{
-  res.setHeader("Access-Control-Allow-Origin","*")
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin", "X-Requested-with, Content-Type, Accept, Z-Key"
-  );
-  res.setHeader("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS")
-  next()
-})
-
 //! All Routes start here
 app.use(routes)
 
@@ -33,7 +23,8 @@ app.use((req,res,next)=>{
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(500).json({ 500: "Request failed" });
+  const status = err.status || 500
+  res.status(status).json({ error: err.message|| "Request failed" });
 });
 
 connectMongo().then(() => {
