@@ -11,16 +11,7 @@
     "https"
   ],
   "paths": {
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
+
     "/contacts/": {
       "get": {
         "tags": [
