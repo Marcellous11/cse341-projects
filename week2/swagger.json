@@ -5,7 +5,7 @@
     "description": "Contacts for CSE341 API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-projects-cs73.onrender.com/",
   "basePath": "/",
   "schemes": [
     "http"
@@ -150,7 +150,7 @@
     }
   },
   "schemas": [
-    "https,",
-    "http"
+    "http,",
+    "https"
   ]
 }
