@@ -8,7 +8,6 @@ import {
 } from "../controllers/contacts.js";
 
 const routes = express.Router();
-/* #swagger.tags = ['Contacts'] */
 routes.get("/", GetAllContacts);
 routes.get("/:id", GetContactById);
 routes.post("/", CreateContact);

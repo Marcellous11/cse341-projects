@@ -2,7 +2,7 @@ import { getDB } from "../data/db.js";
 import { ObjectId } from "mongodb";
 
 async function GetContactById(req, res, next) {
-  
+  /* #swagger.tags=['Contacts'] */
   try {
     let db = await getDB();
     let contacts = db.collection("Contacts");
@@ -18,7 +18,7 @@ async function GetContactById(req, res, next) {
 }
 
 async function GetAllContacts(req, res, next) {
-    
+    /* #swagger.tags=['Contacts'] */
   try {
     let db = await getDB();
     let contacts = db.collection("Contacts");
@@ -31,7 +31,7 @@ async function GetAllContacts(req, res, next) {
 }
 
 async function CreateContact(req,res,next){
-    
+    /* #swagger.tags=['Contacts'] */
     try {
       const user = {
         firstName: req.body.firstName,
@@ -57,7 +57,7 @@ async function CreateContact(req,res,next){
   }
 }
 async function UpdateContact(req,res,next){
-    
+    /* #swagger.tags=['Contacts'] */
   const userId = new ObjectId(req.params.id)
     try {
       const user = {
@@ -71,9 +71,9 @@ async function UpdateContact(req,res,next){
     let db = await getDB();
     let contacts_collection = db.collection("Contacts");
     
-    const respone = await contacts_collection.replaceOne({_id:userId},user)
+    const response = await contacts_collection.replaceOne({_id:userId},user)
 
-    if(respone.modifiedCount > 0 ){
+    if(response.modifiedCount > 0 ){
       res.status(204).send()
     }else{
       res.status(500).json(Response.error || "Some error occured while creating user")
@@ -84,7 +84,7 @@ async function UpdateContact(req,res,next){
   }
 }
 async function DeleteContact(req,res,next){
-    
+    /* #swagger.tags=['Contacts'] */
   const userId = new ObjectId(req.params.id)
     try {
 
