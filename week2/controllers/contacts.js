@@ -1,13 +1,13 @@
-import { getDB } from "../models/db.js";
-import {ObjectId} from 'mongodb'
+import { getDB } from "../data/db.js";
+import { ObjectId } from "mongodb";
 
- async function GetContactById(req, res, next) {
+async function GetContactById(req, res, next) {
   try {
     let db = await getDB();
     let contacts = db.collection("Contacts");
 
-    let user_id =req.params.id
-    console.log(user_id)
+    let user_id = req.params.id;
+    console.log(user_id);
 
     const query = { _id: new ObjectId(user_id) };
     const user = await contacts.findOne(query);
@@ -17,7 +17,7 @@ import {ObjectId} from 'mongodb'
   }
 }
 
- async function GetAllContacts(req, res, next)  {
+async function GetAllContacts(req, res, next) {
   try {
     let db = await getDB();
     let contacts = db.collection("Contacts");
@@ -27,6 +27,83 @@ import {ObjectId} from 'mongodb'
   } catch (err) {
     next(err);
   }
-};
+}
 
-export {GetAllContacts, GetContactById}
+async function CreateContact(req,res,next){
+    try {
+      const user = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday:req.body.birthday
+      }
+
+    let db = await getDB();
+    let contacts_collection = db.collection("Contacts");
+    
+    const respone = await contacts_collection.insertOne(user)
+
+    if(respone.acknowledged){
+      res.status(201).send()
+    }else{
+      res.status(500).json(Response.error || "Some error occured while creating user")
+    }
+
+  } catch (err) {
+    next(err);
+  }
+}
+async function UpdateContact(req,res,next){
+  const userId = new ObjectId(req.params.id)
+    try {
+      const user = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday:req.body.birthday
+      }
+
+    let db = await getDB();
+    let contacts_collection = db.collection("Contacts");
+    
+    const respone = await contacts_collection.replaceOne({_id:userId},user)
+
+    if(respone.modifiedCount > 0 ){
+      res.status(204).send()
+    }else{
+      res.status(500).json(Response.error || "Some error occured while creating user")
+    }
+    
+  } catch (err) {
+    next(err);
+  }
+}
+async function DeleteContact(req,res,next){
+  const userId = new ObjectId(req.params.id)
+    try {
+
+    let db = await getDB();
+    let contacts_collection = db.collection("Contacts");
+    
+    const respone = await contacts_collection.deleteOne({_id:userId},true)
+
+    if(respone.deletedCount > 0 ){
+      res.status(204).send()
+    }else{
+      res.status(500).json(Response.error || "Some error occured while creating user")
+    }
+
+  } catch (err) {
+    next(err);
+  }
+}
+
+export {
+  GetAllContacts,
+  GetContactById,
+  CreateContact,
+  UpdateContact,
+  DeleteContact,
+};
